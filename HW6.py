@@ -20,11 +20,11 @@ def test_example(driver):
     m = len(driver.find_elements(By.XPATH, '//*[@id="app-"]/a'))
 
     for i in range(1, m+1):
-        a = driver.find_element(By.XPATH,
+        driver.find_element(By.XPATH,
                                 f'/html/body/div/div/div/table/tbody/tr/td[1]/div[3]/ul/li[{i}]/a/span[2]').click()
         driver.find_element(By.TAG_NAME, 'h1').text
         x = len(driver.find_elements(By.CSS_SELECTOR, 'li li'))
         for j in range(1, x+1):
-            a1 = driver.find_element(By.XPATH,
+            driver.find_element(By.XPATH,
                                      f'/html/body/div/div/div/table/tbody/tr/td[1]/div[3]/ul/li[{i}]/ul/li[{j}]/a/span').click()
-        driver.find_element(By.TAG_NAME, 'h1').text
+            driver.find_element(By.TAG_NAME, 'h1').text
