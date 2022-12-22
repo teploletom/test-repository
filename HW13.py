@@ -20,11 +20,8 @@ def test_example(driver):
         driver.get("http://localhost/litecart/en/")
         driver.find_element_by_css_selector("#box-most-popular > div > ul > li:nth-child(1) > a.link").click()
         driver.find_element_by_name("add_cart_product").click()
-      #  t = WebDriverWait(driver, 15)
-      #  numbers = t.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cart > a.content > span.quantity"))).get_attribute("textContent")
         time.sleep(10)
         numbers = driver.find_element_by_css_selector("#cart > a.content > span.quantity").get_attribute("textContent")
-        print(numbers)
 
     # Go to cart
     driver.get("http://localhost/litecart/en/checkout")
@@ -36,6 +33,6 @@ def test_example(driver):
         print(m)
         driver.find_element_by_name("remove_cart_item").click()
         m = m - 1
-    t3 = WebDriverWait(driver, 20)
-    a = t3.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#checkout-cart-wrapper > p:nth-child(1) > em"))).get_attribute("textContent")
+    t = WebDriverWait(driver, 20)
+    a = t.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#checkout-cart-wrapper > p:nth-child(1) > em"))).get_attribute("textContent")
     assert a == "There are no items in your cart.", "Not sorted"
