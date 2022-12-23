@@ -1,8 +1,6 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 @pytest.fixture
@@ -20,11 +18,10 @@ def test_example(driver):
     m = len(driver.find_elements(By.XPATH, '//*[@id="app-"]/a'))
 
     for i in range(1, m+1):
-        driver.find_element(By.XPATH,
-                                f'/html/body/div/div/div/table/tbody/tr/td[1]/div[3]/ul/li[{i}]/a/span[2]').click()
+        driver.find_element(By.XPATH, f'//*[@id="box-apps-menu"]/li[{i}]/a').click()
         driver.find_element(By.TAG_NAME, 'h1').text
-        x = len(driver.find_elements(By.CSS_SELECTOR, 'li li'))
+
+        x = len(driver.find_elements(By.CSS_SELECTOR, 'ul.docs li'))
         for j in range(1, x+1):
-            driver.find_element(By.XPATH,
-                                     f'/html/body/div/div/div/table/tbody/tr/td[1]/div[3]/ul/li[{i}]/ul/li[{j}]/a/span').click()
-            driver.find_element(By.TAG_NAME, 'h1').text
+           driver.find_element(By.XPATH, f'//*[@id="app-"]/ul/li[{j}]/a').click()
+           driver.find_element(By.TAG_NAME, 'h1').text
