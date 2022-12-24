@@ -31,15 +31,13 @@ def test_example(driver):
                     driver.find_element(By.CSS_SELECTOR, f'#content > form > table > tbody > tr:nth-child({i}) > td:nth-child(5) > a').click()
                     m1 = len(driver.find_elements_by_css_selector("#table-zones > tbody tr")) #count zones inside Country
                     for p in range(2, m1):
-                        country_name1 = (driver.find_elements(By.CSS_SELECTOR,
-                                                             f'#table-zones > tbody > tr:nth-child({p}) > td:nth-child(3) > input[type=hidden]'))
-                        for p1 in country_name1:
-                            p1 = p1.text
-                            list1.append(p1)
+                        country_name1 = (driver.find_element(By.XPATH, f'//*[@id="table-zones"]/tbody/tr[{p}]/td[3]/input')).get_attribute("value")
+                        list1.append(country_name1)
                     sorted_list1 = sorted(list1)
                     assert list1 == sorted_list1, "Not sorted"
-                    list1 = []
+                    list1 = []    #clean list
                     sorted_list1 = []
                     driver.get("http://localhost/litecart/admin/?app=countries&doc=countries")
     list_country1 = list_country
     assert list_country1 == list_country, "Not sorted"
+    
