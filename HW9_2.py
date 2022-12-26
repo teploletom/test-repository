@@ -26,10 +26,8 @@ def test_example(driver):
         m2 = len(driver.find_elements_by_css_selector("span.select2-selection__rendered")) # count of all elements Edit Geo Zone page
         m3 = len(driver.find_elements_by_css_selector("#table-zones > tbody > tr:nth-child(3) > td:nth-child(3) > select > option"))# count of Zone Edit Geo Zone page
         for j in range(2, m2 + 2):
-            select_element = driver.find_element_by_css_selector(f"#table-zones > tbody > tr:nth-child({j}) > td:nth-child(3) > select")
-            select = Select(select_element)
-            selected_option_list = select.all_selected_options
-            for x in selected_option_list:
+            select_element = driver.find_elements_by_css_selector(f"#table-zones > tbody > tr:nth-child({j}) > td:nth-child(3) > select option[selected]")
+            for x in select_element:
                 x = x.text
                 list.append(x)
         sorted_list = sorted(list)
