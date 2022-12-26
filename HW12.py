@@ -63,9 +63,3 @@ def test_example(driver):
             if y == new_duck:
                 print(new_duck + " was added")
 
-
-
-
-
-
-
