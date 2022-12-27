@@ -29,8 +29,8 @@ def test_example(driver):
     new_duck = "Gold Duck" + random_num
     driver.find_element_by_name("name[en]").send_keys(new_duck)
     driver.find_element_by_name("code").send_keys("11118")
-    driver.find_element_by_css_selector("#tab-general > table > tbody > tr:nth-child(4) > td > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > input[type=checkbox]").click()
-    driver.find_element_by_css_selector("#tab-general > table > tbody > tr:nth-child(4) > td > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > input[type=checkbox]").click()
+    driver.find_elements_by_css_selector("input[name='categories[]']")[0].click()
+    driver.find_elements_by_css_selector("input[name='categories[]']")[1].click()
     driver.find_element_by_name("product_groups[]").click()
     driver.find_element_by_name("quantity").send_keys("10000")
     driver.find_element_by_name("new_images[]").send_keys(os.getcwd() + "\duck.jpg")
@@ -39,7 +39,7 @@ def test_example(driver):
 
     ### Information tab
     driver.find_element(By.LINK_TEXT, "Information").click()
-    driver.find_element_by_css_selector("#tab-information > table > tbody > tr:nth-child(1) > td > select > option:nth-child(2)").click()
+    driver.find_element_by_css_selector("select[name=manufacturer_id] [value='1']").click()
     driver.find_element_by_name("keywords").send_keys("Duck")
     driver.find_element_by_name("short_description[en]").send_keys("short_description")
     driver.find_element_by_css_selector("div.trumbowyg-editor").send_keys("Description")
@@ -49,7 +49,7 @@ def test_example(driver):
     ###Prices
     driver.find_element(By.LINK_TEXT, "Prices").click()
     driver.find_element_by_name("purchase_price").send_keys("20")
-    driver.find_element_by_css_selector("#tab-prices > table:nth-child(2) > tbody > tr > td > select > option:nth-child(2)").click()
+    driver.find_element_by_css_selector("select[name='purchase_price_currency_code'] [value='USD']").click()
     driver.find_element_by_name("prices[USD]").send_keys("20")
     driver.find_element_by_name("prices[EUR]").send_keys("23")
     driver.find_element_by_name("save").click()
@@ -62,4 +62,3 @@ def test_example(driver):
             y = y.text
             if y == new_duck:
                 print(new_duck + " was added")
-
