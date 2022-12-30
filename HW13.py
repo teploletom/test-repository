@@ -36,4 +36,4 @@ def test_example(driver):
 
     a = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#checkout-cart-wrapper > p:nth-child(1) > em"))).get_attribute("textContent")
     assert a == "There are no items in your cart.", "Not deleted item(s)"
-    time.sleep(20)
+
